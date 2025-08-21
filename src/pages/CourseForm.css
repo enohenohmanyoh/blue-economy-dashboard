@@ -1,0 +1,39 @@
+.course-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.course-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.course-form label {
+  margin: 0.5rem 0 0.2rem;
+}
+
+.course-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.course-form button {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.course-form button:hover {
+  background: #005fa3;
+}

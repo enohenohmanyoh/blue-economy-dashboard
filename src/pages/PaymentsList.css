@@ -1,0 +1,97 @@
+/* ====== PaymentsList.css ====== */
+@import "./EventsList.css"; /* reuse theme variables */
+
+.payments-container {
+  max-width: 1100px;          /* ✅ back to centered card */
+  margin: 32px auto;          /* center align */
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.payments-container h2 {
+  margin: 0 0 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+/* ====== Payments Table ====== */
+.payments-table {
+  width: 100%;                 /* fits inside card */
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;            /* ✅ keeps rounded corners */
+}
+
+.payments-table thead th {
+  text-align: left;
+  background: linear-gradient(to bottom, #f9fafb, #f3f4f6);
+  padding: 14px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.payments-table tbody td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.payments-table tbody tr:nth-child(odd) td {
+  background: rgba(0,0,0,0.015);
+}
+
+.payments-table tbody tr:hover td {
+  background: rgba(37, 99, 235, 0.06);
+}
+
+/* ====== Payment Form ====== */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 1.5rem auto;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.payment-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.payment-form label {
+  margin: 0.5rem 0 0.2rem;
+}
+
+.payment-form input {
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.payment-form button {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.payment-form button:hover {
+  background: var(--primary-600);
+}

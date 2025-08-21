@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  background : white;
+  color: black;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: rgb(14, 13, 13);
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+}

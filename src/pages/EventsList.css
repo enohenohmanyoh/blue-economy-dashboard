@@ -1,0 +1,232 @@
+/* ====== EventsList.css ====== */
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+
+  --primary: #2563eb;       /* edit / primary */
+  --primary-600: #1d4ed8;
+  --danger: #ef4444;        /* delete */
+  --danger-600: #dc2626;
+  --success: #16a34a;       /* save */
+  --success-600: #15803d;
+  --warning: #f59e0b;       /* cancel (neutral/warn) */
+  --warning-700: #b45309;
+
+  --radius: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1020;
+    --card: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #1f2937;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Container */
+.events-container {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.events-container h2 {
+  margin: 0 0 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Empty & loading states */
+.events-container p {
+  color: var(--muted);
+  margin: 12px 0;
+}
+
+/* Table wrapper for horizontal scroll on small screens */
+.events-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.events-table thead th {
+  text-align: left;
+  background: linear-gradient(to bottom, #f9fafb, #f3f4f6);
+  padding: 14px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.events-table tbody td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+/* Zebra striping */
+.events-table tbody tr:nth-child(odd) td {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+/* Row hover */
+.events-table tbody tr:hover td {
+  background: rgba(37, 99, 235, 0.06);
+}
+
+/* First & last cell rounding */
+.events-table thead th:first-child,
+.events-table tbody td:first-child {
+  padding-left: 16px;
+}
+.events-table thead th:last-child,
+.events-table tbody td:last-child {
+  padding-right: 16px;
+}
+
+/* Action buttons layout */
+.events-table td:last-child {
+  white-space: nowrap;
+}
+
+/* Base button */
+button {
+  font: inherit;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform 0.06s ease, box-shadow 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  user-select: none;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Button colors */
+.edit-btn {
+  background: var(--primary);
+  color: #fff;
+  margin-right: 8px;
+}
+.edit-btn:hover { background: var(--primary-600); }
+
+.delete-btn {
+  background: var(--danger);
+  color: #fff;
+}
+.delete-btn:hover { background: var(--danger-600); }
+
+.save-btn {
+  background: var(--success);
+  color: #fff;
+  margin-right: 8px;
+}
+.save-btn:hover { background: var(--success-600); }
+
+.cancel-btn {
+  background: var(--warning);
+  color: #111827;
+}
+.cancel-btn:hover { background: var(--warning-700); color: #fff; }
+
+/* Inputs for inline editing */
+.events-table input[type="text"],
+.events-table input[type="date"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.events-table input[type="text"]::placeholder,
+.events-table input[type="date"]::placeholder {
+  color: var(--muted);
+}
+
+.events-table input[type="text"]:focus,
+.events-table input[type="date"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* Checkbox styling */
+.events-table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .events-container {
+    margin: 16px;
+    padding: 16px;
+  }
+
+  .events-table {
+    display: block;
+    overflow-x: auto; /* allow horizontal scroll */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .events-table thead th,
+  .events-table tbody td {
+    white-space: nowrap;
+  }
+
+  button {
+    padding: 8px 12px;
+  }
+}
+
+/* Utility: subtle badges (if you ever render status text) */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.03);
+  color: var(--text);
+}
+
+/* Focus visibility for keyboard users */
+button:focus-visible,
+.events-table input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+}
+
+/* Subtle card background behind table (optional) */
+body {
+  background: var(--bg);
+}

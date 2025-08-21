@@ -1,0 +1,72 @@
+.course-container {
+  width: 90%;
+  margin: 2rem auto;
+}
+
+/* Table */
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.course-table th,
+.course-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* ✅ Blue Heading Row */
+.course-table th {
+  background: #007bff;   /* dashboard blue */
+  color: white;          /* white text for contrast */
+  font-weight: 600;
+  text-align: center;
+  padding: 0.9rem;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); /* subtle depth */
+}
+
+/* Alternate row background */
+.course-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.course-table tr:hover {
+  background: #f1f7ff; /* light blue highlight */
+  cursor: pointer;
+}
+
+/* Action Buttons */
+.course-table button {
+  margin: 0 5px;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Edit Button */
+.course-table button:first-child {
+  background: #ffc107;
+  color: #000;
+}
+
+/* Delete Button */
+.course-table button:last-child {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Hover Effects for Buttons */
+.course-table button:first-child:hover {
+  background: #e0a800;
+}
+
+.course-table button:last-child:hover {
+  background: #c0392b;
+}
