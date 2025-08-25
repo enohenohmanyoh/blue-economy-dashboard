@@ -1,72 +1,199 @@
+/* =========================
+   Unified Full-Page Styles
+   ========================= */
+
+/* Full-page gradient background */
+.events-container,
 .course-container {
-  width: 90%;
-  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  padding: 30px 20px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Table */
+/* Frosted glass card for table + content */
+.events-card,
+.course-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 1000px;
+  text-align: left;
+  backdrop-filter: blur(5px);
+}
+
+/* Headings */
+.events-card h2,
+.course-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+/* =========================
+   Tables Styling
+   ========================= */
+.events-table,
 .course-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
+  margin-top: 20px;
 }
 
+.events-table th,
+.events-table td,
 .course-table th,
 .course-table td {
-  border: 1px solid #ddd;
-  padding: 0.75rem;
-  text-align: center;
-  font-size: 0.95rem;
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+  color: #34495e;
 }
 
-/* ✅ Blue Heading Row */
+.events-table th,
 .course-table th {
-  background: #007bff;   /* dashboard blue */
-  color: white;          /* white text for contrast */
+  background-color: rgba(26, 188, 156, 0.2);
   font-weight: 600;
-  text-align: center;
-  padding: 0.9rem;
-  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); /* subtle depth */
 }
 
-/* Alternate row background */
-.course-table tr:nth-child(even) {
-  background: #f9f9f9;
-}
-
+.events-table tr:hover,
 .course-table tr:hover {
-  background: #f1f7ff; /* light blue highlight */
-  cursor: pointer;
+  background: rgba(26, 188, 156, 0.1);
+  transition: background 0.3s ease;
 }
 
-/* Action Buttons */
-.course-table button {
-  margin: 0 5px;
-  padding: 0.4rem 0.8rem;
+/* =========================
+   Buttons
+   ========================= */
+.edit-btn {
+  background-color: #28a745;  /* green */
+  color: #fff;
+  padding: 6px 12px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.85rem;
+  border-radius: 6px;
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* Edit Button */
-.course-table button:first-child {
-  background: #ffc107;
-  color: #000;
+.edit-btn:hover {
+  background-color: #218838;
 }
 
-/* Delete Button */
-.course-table button:last-child {
-  background: #e74c3c;
-  color: white;
+.delete-btn {
+  background-color: #dc3545;  /* red */
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* Hover Effects for Buttons */
-.course-table button:first-child:hover {
-  background: #e0a800;
+.delete-btn:hover {
+  background-color: #c82333;
 }
 
-.course-table button:last-child:hover {
-  background: #c0392b;
+/* Create Button (for events) */
+.create-btn {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px 16px;
+  background-color: #1abc9c;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.create-btn:hover {
+  background-color: #16a085;
+}
+
+/* =========================
+   Event Form Styling
+   ========================= */
+.event-form {
+  background: rgba(255, 255, 255, 0.97);
+  padding: 15px;
+  margin: 0 auto 15px auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+.event-form input,
+.event-form textarea {
+  width: 90%;
+  max-width: 450px;
+  padding: 8px 10px;
+  margin: 0 auto 8px auto;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.event-form input:focus,
+.event-form textarea:focus {
+  outline: none;
+  border-color: #1abc9c;
+  box-shadow: 0 0 4px rgba(26, 188, 156, 0.3);
+}
+
+.event-form textarea {
+  min-height: 50px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.form-buttons button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 768px) {
+  .events-table,
+  .course-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .event-form,
+  .events-card,
+  .course-card {
+    width: 95%;
+    padding: 20px 15px;
+  }
+
+  .events-card h2,
+  .course-card h2 {
+    font-size: 20px;
+  }
 }

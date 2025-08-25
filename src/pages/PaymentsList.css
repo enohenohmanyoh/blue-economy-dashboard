@@ -1,97 +1,82 @@
-/* ====== PaymentsList.css ====== */
-@import "./EventsList.css"; /* reuse theme variables */
-
+/* Full-page gradient background */
 .payments-container {
-  max-width: 1100px;          /* ✅ back to centered card */
-  margin: 32px auto;          /* center align */
-  padding: 24px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.payments-container h2 {
-  margin: 0 0 16px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
-  text-align: center;
-}
-
-/* ====== Payments Table ====== */
-.payments-table {
-  width: 100%;                 /* fits inside card */
-  border-collapse: separate;
-  border-spacing: 0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;            /* ✅ keeps rounded corners */
-}
-
-.payments-table thead th {
-  text-align: left;
-  background: linear-gradient(to bottom, #f9fafb, #f3f4f6);
-  padding: 14px 12px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.payments-table tbody td {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  font-size: 0.95rem;
-}
-
-.payments-table tbody tr:nth-child(odd) td {
-  background: rgba(0,0,0,0.015);
-}
-
-.payments-table tbody tr:hover td {
-  background: rgba(37, 99, 235, 0.06);
-}
-
-/* ====== Payment Form ====== */
-.payment-form {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
-  margin: 1.5rem auto;
-  padding: 1.25rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--card);
-  box-shadow: var(--shadow);
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  font-family: 'Segoe UI', sans-serif;
+  color: #2c3e50;
 }
 
-.payment-form h2 {
+/* Frosted glass card */
+.payments-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px;
+  backdrop-filter: blur(5px);
+}
+
+/* Heading */
+.payments-card h2 {
   text-align: center;
-  margin-bottom: 1rem;
-  color: var(--text);
+  margin-bottom: 20px;
 }
 
-.payment-form label {
-  margin: 0.5rem 0 0.2rem;
+/* Table */
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
-.payment-form input {
-  padding: 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 0.75rem;
+.payments-table th, .payments-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
 }
 
-.payment-form button {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background: var(--primary);
-  color: white;
+.payments-table th {
+  background-color: rgba(26, 188, 156, 0.2);
+}
+
+.payments-table tr:hover {
+  background-color: rgba(26, 188, 156, 0.1);
+}
+
+/* Delete button */
+.delete-btn {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 6px 12px;
   border: none;
-  border-radius: 999px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
-.payment-form button:hover {
-  background: var(--primary-600);
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Expanded row details */
+.details-row {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.details-grid p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #34495e;
 }

@@ -1,30 +1,70 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-import CourseCreate from "./pages/CourseCreate";
-import CourseForm from "./pages/CourseForm";
-import EventForm from "./pages/EventForm";
-import Dashboard from "./components/Dashboard";
-import Header from "./components/Header";
+import AdminDashboard from "./components/AdminDashboard";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Login from "./auth/login";
+import Register from "./auth/register";
+
+import UserList from "./admin/UserList";
+import CourseList from "./pages/CourseList";
+import EventsList from "./pages/EventsList";
+import PaymentsList from "./pages/PaymentsList";
+import AdminHome from "./pages/AdminHome";
+
+import "./App.css";
 
 function App() {
-  return (
-    
-      <div className="app">
-        <Header/>
-        {/* ✅ Dashboard handles Courses, Events, Payments */}
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
 
-          {/* If you want standalone routes outside dashboard */}
-          <Route path="/create-course" element={<CourseCreate />} />
-          <Route path="/course-form" element={<CourseForm />} />
-          <Route path="/create-event" element={<EventForm />} />
+  return (
+  
+      <div className="app">
+        {/* Pass setIsAuthenticated so Header can handle logout */}
+        <Header setIsAuthenticated={setIsAuthenticated} />
+
+        <Routes>
+          {/* Public routes */}
+          <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* Protected dashboard routes */}
+          <Route
+            path="/user/dashboard/:id/*"
+            element={
+              isAuthenticated ? (
+                <AdminDashboard setIsAuthenticated={setIsAuthenticated} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          >
+            {/* Nested routes inside dashboard */}
+            <Route index element={<AdminHome />} />
+            <Route path="user/list" element={<UserList />} />
+            <Route path="payment/list" element={<PaymentsList />} />
+            <Route path="course/list" element={<CourseList />} />
+            <Route path="event/list" element={<EventsList />} />
+            <Route path="settings" element={<p>Settings Page (Coming Soon)</p>} />
+          </Route>
+
+          {/* Default route */}
+          <Route
+            path="/"
+            element={
+              isAuthenticated ? (
+                <Navigate to={`/user/dashboard/${localStorage.getItem("userId")}`} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
         </Routes>
 
-        <Footer/>
+        <Footer />
       </div>
 
   );

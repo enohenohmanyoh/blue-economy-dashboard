@@ -1,0 +1,100 @@
+/* Container for login page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* form starts lower */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  padding: 40px 20px;
+}
+
+/* Login form styling */
+.login-form {
+  margin-top: 80px; /* pushes the form down */
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Form header */
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #2c3e50;
+}
+
+/* Inputs styling */
+.login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.4);
+}
+
+/* Login button styling */
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.login-form button:hover {
+  background: #2980b9;
+}
+
+/* Create Account link as button */
+.login-form .register-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-form .register-link a {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background: #8e44ad; /* Purple for differentiation */
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.login-form .register-link a:hover {
+  background: #732d91;
+}
+
+/* Fade-in animation for form */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

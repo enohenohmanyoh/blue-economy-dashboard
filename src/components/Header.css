@@ -1,26 +1,97 @@
+/* Header container */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 30px;
-  background : white;
-  color: black;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: black; /* Blue background */
+  color: white;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  position: relative;
+  z-index: 10;
 }
 
-.header .logo {
-  font-size: 1.2rem;
+/* Logo styling */
+.logo {
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: rgb(14, 13, 13);
-  font-weight: 500;
-  transition: opacity 0.2s ease;
+/* User menu container */
+.user-menu {
+  position: relative;
 }
 
-.nav a:hover {
-  opacity: 0.8;
+/* Icon button styling */
+.icon-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: transform 0.2s;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}
+
+/* Dropdown container */
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  overflow: hidden;
+  animation: dropdown-slide 0.2s ease-out;
+}
+
+/* Dropdown link styling */
+.dropdown-link {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.dropdown-link:hover {
+  background-color: #f0f0f0;
+}
+
+/* Optional dropdown animation */
+@keyframes dropdown-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 12px;
+  text-align: left;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background: hsl(355, 70%, 91%);
+  color: black;
 }
