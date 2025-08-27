@@ -1,0 +1,201 @@
+/* =========================
+   Full-Page Styles for Online Courses
+   ========================= */
+
+/* Full-page gradient background */
+.course-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  padding: 30px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Frosted glass card for table + content */
+.course-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 1000px;
+  text-align: left;
+  backdrop-filter: blur(5px);
+}
+
+/* Headings */
+.course-card h2,
+.course-card h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.course-card h3 {
+  font-size: 18px;
+}
+
+/* =========================
+   Courses Table Styling
+   ========================= */
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.course-table th,
+.course-table td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+  color: #34495e;
+}
+
+.course-table th {
+  background-color: rgba(26, 188, 156, 0.2);
+  font-weight: 600;
+}
+
+.course-table tr:hover {
+  background: rgba(26, 188, 156, 0.1);
+  transition: background 0.3s ease;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.edit-btn {
+  background-color: #28a745;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.btn-primary {
+  background-color: #1abc9c;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #16a085;
+}
+
+.btn-secondary {
+  background-color: #7f8c8d;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #636e72;
+}
+
+/* =========================
+   Course Form Styling
+   ========================= */
+.course-form {
+  background: rgba(255, 255, 255, 0.97);
+  padding: 20px;
+  margin: 0 auto 25px auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  max-width: 500px;
+  text-align: center;
+}
+
+.course-form input {
+  width: 90%;
+  max-width: 450px;
+  padding: 8px 10px;
+  margin: 8px auto;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.course-form input:focus {
+  outline: none;
+  border-color: #1abc9c;
+  box-shadow: 0 0 4px rgba(26, 188, 156, 0.3);
+}
+
+/* Form buttons container */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* =========================
+   Loading & Error Messages
+   ========================= */
+.loading,
+.no-courses,
+.error-message {
+  text-align: center;
+  margin-top: 15px;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 768px) {
+  .course-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .course-card,
+  .course-form {
+    width: 95%;
+    padding: 20px 15px;
+  }
+
+  .course-card h2,
+  .course-card h3 {
+    font-size: 20px;
+  }
+}

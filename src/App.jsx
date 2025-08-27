@@ -14,6 +14,8 @@ import PaymentsList from "./pages/PaymentsList";
 import AdminHome from "./pages/AdminHome";
 
 import "./App.css";
+import EventRegisterList from "./pages/EventRegisterList";
+import OnlineCourse from "./pages/OnlineCourseList";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -23,6 +25,7 @@ function App() {
   return (
   
       <div className="app">
+
         {/* Pass setIsAuthenticated so Header can handle logout */}
         <Header setIsAuthenticated={setIsAuthenticated} />
 
@@ -47,7 +50,11 @@ function App() {
             <Route path="user/list" element={<UserList />} />
             <Route path="payment/list" element={<PaymentsList />} />
             <Route path="course/list" element={<CourseList />} />
+            <Route path="online/course" element={<OnlineCourse />} />
+
             <Route path="event/list" element={<EventsList />} />
+           <Route path="event/register" element={<EventRegisterList/>} />
+            
             <Route path="settings" element={<p>Settings Page (Coming Soon)</p>} />
           </Route>
 
@@ -71,3 +78,6 @@ function App() {
 }
 
 export default App;
+
+
+            

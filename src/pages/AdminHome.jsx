@@ -6,15 +6,31 @@ const AdminHome = () => {
   return (
     <div className="admin-home-container">
 
+
       {/* Quick Links */}
       <section className="quick-links">
         <h2>Quick Actions</h2>
         <div className="links-grid">
-          <Link to="user/list" className="quick-btn">Manage Users</Link>
-          <Link to="payment/list" className="quick-btn">Manage Payments</Link>
-          <Link to="course/list" className="quick-btn">Manage Courses</Link>
-          <Link to="event/list" className="quick-btn">Manage Events</Link>
-          <Link to="settings" className="quick-btn">Settings</Link>
+           <Link to="event/list" className="quick-btn"> Create Up Coming Events</Link>
+            <Link to="course/list" className="quick-btn">Create Offer Courses</Link>
+            <Link to="online/course" className="quick-btn">Create Online Courses</Link>
+
+          <Link to="user/list" className="quick-btn">All Second Party Users List</Link>
+          <Link to="payment/list" className="quick-btn">Registration for Course Payments List</Link>
+         
+          <Link to="event/register" className="quick-btn">List of Event Registration</Link>
+          
+     
+         
+        </div>
+      </section>
+
+      
+       <section className="quick-links">
+      
+        <div className="links-grid">
+         
+           <Link to="settings" className="quick-btn">Settings</Link>
         </div>
       </section>
 
