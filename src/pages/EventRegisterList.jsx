@@ -1,8 +1,10 @@
+// src/pages/EventRegisterList.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./EventRegisterList.css"; // import your CSS
 
-const API_BASE = "http://localhost:8080/api/admin"; // Replace with your backend URL
+// Use environment variable, fallback to localhost
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080/api/admin";
 
 const EventRegisterList = () => {
   const [members, setMembers] = useState([]);

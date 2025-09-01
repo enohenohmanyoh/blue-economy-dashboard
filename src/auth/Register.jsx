@@ -1,23 +1,25 @@
-// src/Register.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api";   // ✅ centralized axios instance
 import "./Register.css";
+
+// ✅ initial state for form reset
+const initialState = {
+  firstName: "",
+  lastName: "",
+  username: "",
+  email: "",
+  password: "",
+  birthDate: "",
+  gender: "",
+};
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    password: "",
-    birthDate: "",
-    gender: "",
-  });
-
+  const [formData, setFormData] = useState(initialState);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,25 +27,26 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
-      // ✅ Force register as USER
-      await axios.post("http://localhost:8080/api/auth/admin/register", formData);
+      // ✅ Register user via backend
+      await api.post("/auth/register", formData);
 
       setMessage("✅ Registration successful! You can now log in.");
-      setFormData({
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        password: "",
-        birthDate: "",
-        gender: "",
-      });
+      setFormData(initialState);
 
+      // redirect after 1 second
       setTimeout(() => navigate("/login"), 1000);
     } catch (err) {
-      console.error(err);
-      setMessage(err.response?.data?.message || "❌ Registration failed.");
+      console.error("Registration error:", err);
+      setMessage(
+        err.response?.data?.message ||
+        err.message ||
+        "❌ Registration failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -99,16 +102,21 @@ const Register = () => {
           value={formData.birthDate}
           onChange={handleChange}
         />
-        <select name="gender" value={formData.gender} onChange={handleChange}>
+        <select
+          name="gender"
+          value={formData.gender}
+          onChange={handleChange}
+        >
           <option value="">Select Gender</option>
           <option value="MALE">Male</option>
           <option value="FEMALE">Female</option>
           <option value="OTHER">Other</option>
         </select>
 
-        {/* Removed Role Dropdown */}
+        <button type="submit" disabled={loading}>
+          {loading ? "Registering..." : "Register"}
+        </button>
 
-        <button type="submit">Register</button>
         {message && <p className="message">{message}</p>}
 
         <p className="back-to-login">

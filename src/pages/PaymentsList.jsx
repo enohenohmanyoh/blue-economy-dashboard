@@ -1,5 +1,9 @@
+// src/pages/PaymentsList.jsx
 import React, { useEffect, useState } from "react";
 import "./PaymentsList.css";
+
+// Use environment variable for backend URL
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080/api/admin";
 
 const PaymentsList = () => {
   const [payments, setPayments] = useState([]);
@@ -8,7 +12,7 @@ const PaymentsList = () => {
 
   const fetchPayments = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/admin/get/all/payment");
+      const response = await fetch(`${API_BASE}/get/all/payment`);
       if (!response.ok) throw new Error("Failed to fetch payments");
       const data = await response.json();
       setPayments(data);
@@ -22,7 +26,7 @@ const PaymentsList = () => {
   const deletePayment = async (id) => {
     if (!window.confirm("Are you sure you want to delete this payment?")) return;
     try {
-      const response = await fetch(`http://localhost:8080/api/admin/delete/payment/${id}`, { method: "DELETE" });
+      const response = await fetch(`${API_BASE}/delete/payment/${id}`, { method: "DELETE" });
       if (response.ok) {
         setPayments((prevPayments) =>
           prevPayments.filter((payment) => payment.id !== id)

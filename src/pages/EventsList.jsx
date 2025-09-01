@@ -1,10 +1,14 @@
+// src/pages/EventsList.jsx
 import React, { useEffect, useState } from "react";
 import "./EventsList.css";
+
+// Use environment variable, fallback to localhost
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080/api/admin";
 
 const EventsList = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editingEvent, setEditingEvent] = useState(null); // if set → edit mode
+  const [editingEvent, setEditingEvent] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -19,7 +23,7 @@ const EventsList = () => {
   const fetchEvents = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/admin/get/all/event");
+      const response = await fetch(`${API_BASE}/get/all/event`);
       if (!response.ok) throw new Error("Failed to fetch events");
       const data = await response.json();
       setEvents(data);
@@ -35,7 +39,7 @@ const EventsList = () => {
     if (!window.confirm("Are you sure you want to delete this event?")) return;
 
     try {
-      const response = await fetch(`http://localhost:8080/api/admin/delete/event/${id}`, { method: "DELETE" });
+      const response = await fetch(`${API_BASE}/delete/event/${id}`, { method: "DELETE" });
       if (response.ok) {
         setEvents(events.filter((e) => e.id !== id));
       }
@@ -55,8 +59,8 @@ const EventsList = () => {
     e.preventDefault();
 
     const url = editingEvent
-      ? `http://localhost:8080/api/admin/update/event/${editingEvent.id}`
-      : "http://localhost:8080/api/admin/create/event";
+      ? `${API_BASE}/update/event/${editingEvent.id}`
+      : `${API_BASE}/create/event`;
     const method = editingEvent ? "PUT" : "POST";
 
     try {

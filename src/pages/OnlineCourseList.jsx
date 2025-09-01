@@ -1,8 +1,10 @@
+// src/pages/OnlineCourseList.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./OnlineCourseList.css";
 
-const API_URL = "http://localhost:8080/api/admin";
+// Use environment variable for backend URL
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080/api/admin";
 
 const OnlineCourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -21,7 +23,7 @@ const OnlineCourseList = () => {
   const fetchCourses = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API_URL}/get/all/online/course`);
+      const response = await axios.get(`${API_BASE}/get/all/online/course`);
       setCourses(response.data);
       setError("");
     } catch (err) {
@@ -51,10 +53,10 @@ const OnlineCourseList = () => {
     try {
       setError("");
       if (editId) {
-        await axios.put(`${API_URL}/update/online/course/${editId}`, formData);
+        await axios.put(`${API_BASE}/update/online/course/${editId}`, formData);
         setEditId(null);
       } else {
-        await axios.post(`${API_URL}/create/online/course`, formData);
+        await axios.post(`${API_BASE}/create/online/course`, formData);
       }
       setFormData({
         courseCode: "",
@@ -73,7 +75,7 @@ const OnlineCourseList = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this course?")) {
       try {
-        await axios.delete(`${API_URL}/delete/online/course/${id}`);
+        await axios.delete(`${API_BASE}/delete/online/course/${id}`);
         fetchCourses();
       } catch (err) {
         console.error("Error deleting course:", err);

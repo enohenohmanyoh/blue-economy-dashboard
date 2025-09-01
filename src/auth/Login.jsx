@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import api from "../api";   // ✅ import axios helper
 import "./Login.css";
 
 export default function Login({ onLogin }) {
@@ -10,8 +10,10 @@ export default function Login({ onLogin }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await axios.post("http://localhost:8080/api/auth/admin/login", { email, password });
+      const res = await api.post("/auth/admin/login", { email, password });
+
       const { token, id, role, firstName } = res.data;
 
       localStorage.setItem("token", token);
@@ -20,11 +22,10 @@ export default function Login({ onLogin }) {
       localStorage.setItem("firstName", firstName);
 
       onLogin();
-
-      // Navigate to dashboard
       navigate(`/user/dashboard/${id}`);
     } catch (err) {
-      alert("Invalid credentials");
+      console.error("Login error:", err);
+      alert("Invalid credentials or server error.");
     }
   };
 

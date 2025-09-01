@@ -1,8 +1,10 @@
+// src/pages/UserList.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./UserList.css";
 
-const API_URL = "http://localhost:8080/api/admin";
+// Use environment variable, fallback to localhost
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api/admin";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -153,9 +155,7 @@ const UserList = () => {
                     </td>
                     <td>
                       <button onClick={() => updateUser(user.id)}>Save</button>
-                      <button onClick={() => setEditingUser(null)}>
-                        Cancel
-                      </button>
+                      <button onClick={() => setEditingUser(null)}>Cancel</button>
                     </td>
                   </>
                 ) : (
