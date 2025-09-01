@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../api";   // ✅ import axios helper
+import api from "../services/api"; // 👈 make sure this path matches your project
 import "./Login.css";
 
 export default function Login({ onLogin }) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../api";   // ✅ centralized axios instance
+import api from "../services/api"; // 👈 adjust path if needed
 import "./Register.css";
 
 // ✅ initial state for form reset
@@ -31,7 +31,7 @@ const Register = () => {
 
     try {
       // ✅ Register user via backend
-      await api.post("/auth/register", formData);
+      await api.post("/auth/admin/register", formData);
 
       setMessage("✅ Registration successful! You can now log in.");
       setFormData(initialState);
@@ -42,8 +42,8 @@ const Register = () => {
       console.error("Registration error:", err);
       setMessage(
         err.response?.data?.message ||
-        err.message ||
-        "❌ Registration failed. Please try again."
+          err.message ||
+          "❌ Registration failed. Please try again."
       );
     } finally {
       setLoading(false);
