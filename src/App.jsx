@@ -4,8 +4,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import AdminDashboard from "./components/AdminDashboard";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Login from "./auth/login";
-import Register from "./auth/register";
+
+// ✅ Fixed imports (case-sensitive)
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 
 import UserList from "./admin/UserList";
 import CourseList from "./pages/CourseList";
@@ -23,61 +25,57 @@ function App() {
   );
 
   return (
-  
-      <div className="app">
+    <div className="app">
+      <Header setIsAuthenticated={setIsAuthenticated} />
 
-        {/* Pass setIsAuthenticated so Header can handle logout */}
-        <Header setIsAuthenticated={setIsAuthenticated} />
+      <Routes>
+        {/* Public routes */}
+        <Route
+          path="/login"
+          element={<Login onLogin={() => setIsAuthenticated(true)} />}
+        />
+        <Route path="/register" element={<Register />} />
 
-        <Routes>
-          {/* Public routes */}
-          <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
-          <Route path="/register" element={<Register />} />
+        {/* Protected dashboard routes */}
+        <Route
+          path="/user/dashboard/:id/*"
+          element={
+            isAuthenticated ? (
+              <AdminDashboard setIsAuthenticated={setIsAuthenticated} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        >
+          {/* Nested routes inside dashboard */}
+          <Route index element={<AdminHome />} />
+          <Route path="user/list" element={<UserList />} />
+          <Route path="payment/list" element={<PaymentsList />} />
+          <Route path="course/list" element={<CourseList />} />
+          <Route path="online/course" element={<OnlineCourse />} />
+          <Route path="event/list" element={<EventsList />} />
+          <Route path="event/register" element={<EventRegisterList />} />
+          <Route path="settings" element={<p>Settings Page (Coming Soon)</p>} />
+        </Route>
 
-          {/* Protected dashboard routes */}
-          <Route
-            path="/user/dashboard/:id/*"
-            element={
-              isAuthenticated ? (
-                <AdminDashboard setIsAuthenticated={setIsAuthenticated} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          >
-            {/* Nested routes inside dashboard */}
-            <Route index element={<AdminHome />} />
-            <Route path="user/list" element={<UserList />} />
-            <Route path="payment/list" element={<PaymentsList />} />
-            <Route path="course/list" element={<CourseList />} />
-            <Route path="online/course" element={<OnlineCourse />} />
+        {/* Default route */}
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? (
+              <Navigate
+                to={`/user/dashboard/${localStorage.getItem("userId")}`}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+      </Routes>
 
-            <Route path="event/list" element={<EventsList />} />
-           <Route path="event/register" element={<EventRegisterList/>} />
-            
-            <Route path="settings" element={<p>Settings Page (Coming Soon)</p>} />
-          </Route>
-
-          {/* Default route */}
-          <Route
-            path="/"
-            element={
-              isAuthenticated ? (
-                <Navigate to={`/user/dashboard/${localStorage.getItem("userId")}`} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-        </Routes>
-
-        <Footer />
-      </div>
-
+      <Footer />
+    </div>
   );
 }
 
 export default App;
-
-
-            
